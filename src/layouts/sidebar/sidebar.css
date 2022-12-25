@@ -1,0 +1,21 @@
+.sidebar-ar {
+  font-family: "Cairo" !important;
+}
+.sidebar-en {
+  font-family: "Poppins" !important;
+}
+
+/* Icon */
+.ant-menu-item {
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+.ant-menu-item svg {
+  font-size: 1.3rem !important;
+}
+
+/* Active Item */
+.ant-menu-item-selected {
+  background-color: #68d34b42 !important;
+  color: #60bb46 !important;
+}

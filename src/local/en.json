@@ -1,0 +1,32 @@
+{
+  "sidebar": {
+    "elements": ["products", "news", "partners", "add product"]
+  },
+  "header": {
+    "title": "Add New Product"
+  },
+  "addProductPage": {
+    "instructions": {
+      "title": "Please follow These Instructions to add new product easy:",
+      "items": [
+        "You should know that you will add product in two languages Arabic and English",
+        "First Section will be for common features of the new product in two languages like images",
+        "Second Section Will be for English features of new product",
+        "Third Section Will be for Arabic features of new product"
+      ],
+      "steps": [
+        "First Step: Common Features",
+        "Second Step: Features in English",
+        "Final Step: Features in Araic"
+      ]
+    },
+    "form": {
+      "imageText": "Add Product Image/s",
+      "imageBtn": "Add New Image",
+      "product": {
+        "name": "Product Name",
+        "midTitle": "Middle Title"
+      }
+    }
+  }
+}
