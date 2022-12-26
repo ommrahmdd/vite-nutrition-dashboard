@@ -25,7 +25,13 @@
       "imageBtn": "Add New Image",
       "product": {
         "name": "Product Name",
-        "midTitle": "Middle Title"
+        "midTitle": "Middle Title",
+        "details": "Product Details",
+        "storage": "Storage conditions",
+        "directions": "Directions For Use",
+        "directionBtn": "Add New Direction",
+        "types": "Types of use",
+        "typesArr": ["Men", "Kids", "Women"]
       }
     }
   }
