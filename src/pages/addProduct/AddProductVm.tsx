@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 export function useAddProductVm() {
+  const [activeStep, setActiveStep] = useState<number>(1);
   const [initailValue, setInitialValue] = useState({
     imgs: [],
     en: {
@@ -20,6 +21,12 @@ export function useAddProductVm() {
     },
   });
 
+  let increaseActiveStep = () => {
+    setActiveStep(activeStep + 1);
+  };
+  let decreaseActiveStep = () => {
+    setActiveStep(activeStep - 1);
+  };
   let handleAddNewImageToArray = () => {
     setInitialValue((prevState: any) => {
       return {
@@ -108,5 +115,8 @@ export function useAddProductVm() {
     handleDirectionOfUseAdd,
     handleDirectionOfUseChange,
     handleTypesChange,
+    activeStep,
+    increaseActiveStep,
+    decreaseActiveStep,
   };
 }
