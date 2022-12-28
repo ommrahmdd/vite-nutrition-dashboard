@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 export function useAddProductVm() {
-  const [activeStep, setActiveStep] = useState<number>(1);
-  const [initailValue, setInitialValue] = useState({
+  let myState = {
     imgs: [],
     en: {
       title: "",
@@ -17,10 +16,13 @@ export function useAddProductVm() {
       details: "",
       storage: "",
       direction: [],
-      types: [],
     },
-  });
+  };
+  const [activeStep, setActiveStep] = useState<number>(1);
 
+  const [initailValue, setInitialValue] = useState(myState);
+  const [loading, setLoading] = useState<boolean>(false);
+  let imgsCounter: number = 0;
   let increaseActiveStep = () => {
     setActiveStep(activeStep + 1);
   };
@@ -39,51 +41,13 @@ export function useAddProductVm() {
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
-    (initailValue.imgs[index] as any) = e.target.files!;
+    (initailValue.imgs[index] as any) = (e.target as any).files[0];
     setInitialValue((prevState: any) => {
       return {
         ...prevState,
-        imgs: [...prevState.imgs],
       };
     });
     console.log(initailValue.imgs);
-  };
-  let handleChange_en = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setInitialValue((prevState: any) => {
-      return {
-        ...prevState,
-        en: {
-          ...prevState.en,
-          [e.target.name]: e.target.value,
-        },
-      };
-    });
-    console.log(initailValue);
-  };
-  let handleDirectionOfUseAdd = () => {
-    setInitialValue((prevState: any) => ({
-      ...prevState,
-      en: {
-        ...prevState.en,
-        direction: [...prevState.en.direction, ""],
-      },
-    }));
-  };
-  let handleDirectionOfUseChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    (initailValue.en.direction[index] as any) = e.target.value;
-    setInitialValue((prevState: any) => ({
-      ...prevState,
-      en: {
-        ...prevState.en,
-        direction: [...prevState.en.direction],
-      },
-    }));
-    console.log(initailValue);
   };
   let handleTypesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if ((initailValue.en.types as any).indexOf(e.target.value) === -1) {
@@ -107,16 +71,118 @@ export function useAddProductVm() {
     }));
     console.log(initailValue.en);
   };
+  let handleRemoveImageFronArr = (index: number) => {
+    initailValue.imgs.splice(index, 1);
+    console.log(initailValue.imgs);
+    setInitialValue((prevState) => ({
+      ...prevState,
+    }));
+  };
+  //HANDLE: En
+  let handleChange_en = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setInitialValue((prevState: any) => {
+      return {
+        ...prevState,
+        en: {
+          ...prevState.en,
+          [e.target.name]: e.target.value,
+        },
+      };
+    });
+    console.log(initailValue);
+  };
+  let handleDirectionOfUseAdd_en = () => {
+    setInitialValue((prevState: any) => ({
+      ...prevState,
+      en: {
+        ...prevState.en,
+        direction: [...prevState.en.direction, ""],
+      },
+    }));
+  };
+  let handleDirectionOfUseChange_en = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    (initailValue.en.direction[index] as any) = e.target.value;
+    setInitialValue((prevState: any) => ({
+      ...prevState,
+      en: {
+        ...prevState.en,
+        direction: [...prevState.en.direction],
+      },
+    }));
+    console.log(initailValue);
+  };
+
+  //HANDLE: Ar
+  let handleChange_ar = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setInitialValue((prevState: any) => {
+      return {
+        ...prevState,
+        ar: {
+          ...prevState.ar,
+          [e.target.name]: e.target.value,
+        },
+      };
+    });
+    console.log(initailValue);
+  };
+  let handleDirectionOfUseAdd_ar = () => {
+    setInitialValue((prevState: any) => ({
+      ...prevState,
+      ar: {
+        ...prevState.ar,
+        direction: [...prevState.ar.direction, ""],
+      },
+    }));
+  };
+  let handleDirectionOfUseChange_ar = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    (initailValue.ar.direction[index] as any) = e.target.value;
+    setInitialValue((prevState: any) => ({
+      ...prevState,
+      ar: {
+        ...prevState.ar,
+        direction: [...prevState.ar.direction],
+      },
+    }));
+    console.log(initailValue);
+  };
+  let handleLoadingTrue = () => {
+    setLoading(true);
+  };
+  let handleLoadingFalse = () => {
+    setLoading(false);
+  };
+  let handleResetState = () => {
+    setInitialValue(myState);
+  };
   return {
     initailValue,
     handleAddNewImageToArray,
-    handleChange_en,
     handleImageValue,
-    handleDirectionOfUseAdd,
-    handleDirectionOfUseChange,
     handleTypesChange,
     activeStep,
     increaseActiveStep,
     decreaseActiveStep,
+    handleChange_en,
+    handleDirectionOfUseAdd_en,
+    handleDirectionOfUseChange_en,
+    handleChange_ar,
+    handleDirectionOfUseAdd_ar,
+    handleDirectionOfUseChange_ar,
+    loading,
+    handleLoadingTrue,
+    handleLoadingFalse,
+    imgsCounter,
+    handleResetState,
+    handleRemoveImageFronArr,
   };
 }

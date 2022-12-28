@@ -17,7 +17,7 @@
       "steps": [
         "First Step: Common Features",
         "Second Step: Features in English",
-        "Final Step: Features in Araic"
+        "Final Step: Features in Arabic"
       ]
     },
     "form": {
@@ -33,6 +33,14 @@
         "types": "Types of use",
         "typesArr": ["Men", "Kids", "Women"]
       }
+    }
+  },
+  "products": {
+    "tableHeader": {
+      "id": "id",
+      "name": "name",
+      "image": "image",
+      "brief": "brief"
     }
   }
 }
