@@ -1,6 +1,13 @@
 {
   "sidebar": {
-    "elements": ["products", "news", "partners", "add product"]
+    "elements": [
+      "products",
+      "news",
+      "partners",
+      "add product",
+      "Add news",
+      "Add Partner"
+    ]
   },
   "header": {
     "title": "Add New Product"
@@ -41,6 +48,46 @@
       "name": "name",
       "image": "image",
       "brief": "brief"
+    }
+  },
+  "addNewsPage": {
+    "title": "Add News",
+    "instructions": {
+      "title": "Please follow These Instructions to add New easy:",
+      "items": [
+        "You should know that you will add New in two languages Arabic and English",
+        "First Section will be for common features of the new New in two languages like images",
+        "Second Section Will be for English features of new New",
+        "Third Section Will be for Arabic features of new New"
+      ],
+      "steps": [
+        "First Step: Common Features",
+        "Second Step: Features in English",
+        "Final Step: Features in Arabic"
+      ]
+    },
+    "form": {
+      "imageText": "Add New Image",
+      "new": {
+        "title": "new Title",
+        "midTitle": "Middle Title",
+        "details": "new Details",
+        "type": "New Type",
+        "typesArr": [
+          {
+            "value": "announcements",
+            "label": "Announcements"
+          },
+          {
+            "value": "blog",
+            "label": "Blog"
+          },
+          {
+            "value": "community",
+            "label": "Community"
+          }
+        ]
+      }
     }
   }
 }

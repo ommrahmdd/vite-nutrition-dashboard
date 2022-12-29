@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { MenuProps } from "antd";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 import { BsNewspaper, BsCurrencyExchange } from "react-icons/bs";
-import { MdProductionQuantityLimits } from "react-icons/md";
+import {
+  MdProductionQuantityLimits,
+  MdAddComment,
+  MdPersonAddAlt1,
+} from "react-icons/md";
+
 type MenuItem = Required<MenuProps>["items"][number];
 
 export function useSidebar() {
@@ -43,6 +48,18 @@ export function useSidebar() {
       "4",
       "addProduct",
       <MdProductionQuantityLimits className="text-3xl" />
+    ),
+    getItem(
+      (t("sidebar.elements", { returnObjects: true }) as Array<string>)[4],
+      "5",
+      "addNews",
+      <MdAddComment className="text-3xl" />
+    ),
+    getItem(
+      (t("sidebar.elements", { returnObjects: true }) as Array<string>)[5],
+      "6",
+      "addPartner",
+      <MdPersonAddAlt1 className="text-3xl" />
     ),
   ];
 

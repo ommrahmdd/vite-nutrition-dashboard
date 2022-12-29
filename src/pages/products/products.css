@@ -1,3 +1,13 @@
 .table-ar {
   font-family: "Cairo" !important;
 }
+.ant-table-pagination {
+  justify-content: center !important;
+  padding: 2rem 0;
+}
+.ant-pagination-item-active a {
+  color: #60bb46 !important;
+}
+.ant-pagination-item-active {
+  border-color: hsl(107, 46%, 50%) !important;
+}

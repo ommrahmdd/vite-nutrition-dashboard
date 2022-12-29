@@ -1,0 +1,11 @@
+.ant-btn:hover {
+  color: #60bb46 !important;
+  border-color: #60bb46 !important;
+}
+.ant-select-selector {
+  min-width: 15rem;
+}
+.ant-select-selector:hover,
+.ant-select-focused {
+  border-color: #60bb46 !important;
+}

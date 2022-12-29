@@ -2,7 +2,7 @@ import { Table } from "antd";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { getProducts } from "../../services/products";
-import useProducts, { IDataType } from "./ProductsVm";
+import useProducts from "./ProductsVm";
 import "./products.css";
 
 export default function Products() {
@@ -25,7 +25,7 @@ export default function Products() {
   }, []);
   return (
     <div>
-      <div className="">
+      <div className="p-10 shadow-md">
         <Table
           dataSource={products}
           columns={i18n.language === "en" ? columns_en : columns_ar}

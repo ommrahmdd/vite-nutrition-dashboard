@@ -5,6 +5,7 @@ import "./i18n";
 import "./App.css";
 import Nav from "./layouts/nav/Nav";
 import Loading from "./components/Ui/loading/Loading";
+import AddNews from "./pages/addNews/AddNews";
 
 const Sidebar = lazy(() => import("./layouts/sidebar/Sidebar"));
 const AddProduct = lazy(() => import("./pages/addProduct/AddProduct"));
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/addProduct" element={<AddProduct />} />
                 <Route path="/partners" element={<Partners />} />
                 <Route path="/news" element={<News />} />
+                <Route path="/addNews" element={<AddNews />} />
               </Route>
             </Routes>
           </div>
