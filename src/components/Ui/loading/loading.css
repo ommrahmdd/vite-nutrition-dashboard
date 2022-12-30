@@ -1,0 +1,6 @@
+.ant-spin {
+  transform: scale(1.5) !important;
+}
+.ant-spin-dot-item {
+  background-color: #60bb46 !important;
+}

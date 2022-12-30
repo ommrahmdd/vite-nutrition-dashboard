@@ -12,7 +12,7 @@ export default function StepsControllers({
 }) {
   const { i18n } = useTranslation();
   return (
-    <div className="w-full flex items-center justify-center gap-x-5">
+    <div className="w-full flex items-center justify-center gap-x-5 my-10">
       <button
         type="button"
         className={`p-4 text-xl rounded-full border border-greenColor text-white bg-greenColor transition-all duration-300 ease-in-out hover:opacity-30 ${

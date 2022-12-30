@@ -21,6 +21,7 @@ export function useAddNews() {
   const { t } = useTranslation();
   const [activeStep, setActiveStep] = useState<number>(1);
   const [globalForm, setGlobalForm] = useState(initialValue);
+  const [loading, setLoading] = useState<boolean>(false);
   const handleIncreaseStep = () => {
     setActiveStep(activeStep + 1);
   };
@@ -35,12 +36,29 @@ export function useAddNews() {
       };
     });
   };
-  const handleTxtChange_en = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTxtChange_en = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setGlobalForm((prevState) => ({
       ...prevState,
       en: {
         ...prevState.en,
-        title: e.target.value,
+        [e.target.name]: e.target.value,
+      },
+    }));
+  };
+  const handleTxtChange_ar = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setGlobalForm((prevState) => ({
+      ...prevState,
+      ar: {
+        ...prevState.ar,
+        [e.target.name]: e.target.value,
       },
     }));
   };
@@ -54,6 +72,20 @@ export function useAddNews() {
     },
   };
   // SELECT options
+  const options_ar = [
+    {
+      value: "إعلان",
+      label: "إعلان",
+    },
+    {
+      value: "مدونة",
+      label: "مدونة",
+    },
+    {
+      value: "اجتماعي",
+      label: "اجتماعي",
+    },
+  ];
   const options_en = [
     {
       value: "announcements",
@@ -78,6 +110,24 @@ export function useAddNews() {
       },
     }));
   };
+  const handleSelectChange_ar = (value: string) => {
+    setGlobalForm((prevState: any) => ({
+      ...prevState,
+      ar: {
+        ...prevState.ar,
+        type: value,
+      },
+    }));
+  };
+  let handleLoadingTrue = () => {
+    setLoading(true);
+  };
+  let handleLoadingFalse = () => {
+    setLoading(false);
+  };
+  let handleResetState = () => {
+    setGlobalForm(initialValue);
+  };
   return {
     activeStep,
     handleDecreaseStep,
@@ -85,8 +135,15 @@ export function useAddNews() {
     globalForm,
     handleImageChange,
     handleTxtChange_en,
+    handleTxtChange_ar,
     options_en,
+    options_ar,
     props,
     handleSelectChange_en,
+    handleSelectChange_ar,
+    loading,
+    handleLoadingTrue,
+    handleLoadingFalse,
+    handleResetState,
   };
 }
