@@ -9,7 +9,12 @@ import "./addNews.css";
 import StepsControllers from "../../components/stepsControllers/StepsControllers";
 import { addNew, addNewImg } from "../../services/news";
 import { v4 } from "uuid";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import {
+  getDownloadURL,
+  ref,
+  uploadBytes,
+  uploadString,
+} from "firebase/storage";
 import { storage } from "../../services/config";
 import Loading from "../../components/Ui/loading/Loading";
 export default function AddNews() {
@@ -50,12 +55,23 @@ export default function AddNews() {
           addNew(globalForm).then((_id) => {
             let imgName = `${(globalForm.img as any).name}${v4()}`;
             let imgRef = ref(storage, `news/${imgName}`);
-            uploadBytes(imgRef, globalForm.img as any)
-              .then((res) => getDownloadURL(res.ref))
-              .then((url) => addNewImg(_id, url))
+            console.log(globalForm);
+            uploadBytes(imgRef, globalForm.img as any, {
+              contentType: "image/png",
+            })
+              .then((res) => {
+                return getDownloadURL(res.ref);
+              })
+              .then((url) => {
+                console.log(url);
+                return addNewImg(_id, url);
+              })
               .then(() => {
                 handleLoadingFalse();
                 // TODO: add reset
+              })
+              .catch(() => {
+                handleLoadingFalse();
               });
           });
         }}
@@ -76,7 +92,7 @@ export default function AddNews() {
             {/* Image */}
             <div className="flex flex-col items-start">
               <label>{t("addNewsPage.form.imageText")}</label>
-              <Upload {...props} accept=".png, .jpeg, .jpg" className="my-4">
+              <Upload {...props} className="my-4">
                 <Button
                   icon={<BsUpload />}
                   className="flex items-center gap-x-2 lg:scale-110"
@@ -141,7 +157,7 @@ export default function AddNews() {
                 {t("addNewsPage.form.new.type")}
               </label>
               <Select
-                defaultValue={"announcements"}
+                defaultValue="announcements"
                 options={options_en}
                 onChange={handleSelectChange_en}
               />
@@ -218,7 +234,7 @@ export default function AddNews() {
                 {t("addNewsPage.form.new.type")}
               </label>
               <Select
-                defaultValue={"announcements"}
+                defaultValue="إعلان"
                 options={options_ar}
                 onChange={handleSelectChange_ar}
               />

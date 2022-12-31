@@ -25,12 +25,16 @@ export default function Products() {
   }, []);
   return (
     <div>
-      <div className="p-10 shadow-md">
+      <div className="p-10 ">
         <Table
           dataSource={products}
           columns={i18n.language === "en" ? columns_en : columns_ar}
           loading={loading}
           rowKey={(record) => record._id}
+          size="small"
+          scroll={{
+            x: 400,
+          }}
           style={{
             fontFamily: `${i18n.language === "ar" ? "Cairo" : "Poppins"}`,
           }}

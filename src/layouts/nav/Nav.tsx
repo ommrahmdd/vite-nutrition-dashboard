@@ -22,7 +22,11 @@ export default function Nav() {
           className={`${i18n.language === "ar" && "nav-selector-ar"}`}
         />
       </nav>
-      <div className={`mt-5 ${i18n.language === "en" ? "pl-28" : "pr-28"}`}>
+      <div
+        className={`mt-5  ${
+          i18n.language === "en" ? "md:pl-28 md:pr-20" : "md:pr-28 md:pl-20"
+        }`}
+      >
         <Outlet />
       </div>
     </div>

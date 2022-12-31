@@ -2,6 +2,7 @@ import {
   addDoc,
   arrayUnion,
   collection,
+  deleteDoc,
   doc,
   getDocs,
   updateDoc,
@@ -30,8 +31,14 @@ export const addNew = async (_new: any) => {
 // HANDLE: add new image
 export let addNewImg = async (id: string, img: string) => {
   let docRef = doc(db, "news", id);
-  let product = await updateDoc(docRef, {
+  let _new = await updateDoc(docRef, {
     img: img,
   });
-  return product;
+  return _new;
+};
+
+// HANDLE: delete new
+export const deleteNew = async (_id: string) => {
+  let docSnap = doc(db, "news", _id);
+  await deleteDoc(docSnap);
 };

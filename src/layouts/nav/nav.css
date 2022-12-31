@@ -1,6 +1,8 @@
 .ant-select-selector {
   width: 8rem !important;
+  font-family: "Cairo" !important;
 }
+
 .nav-selector-ar {
   font-family: "Cairo" !important;
 }

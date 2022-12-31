@@ -5,29 +5,12 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { MdModeEditOutline } from "react-icons/md";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import "react-lazy-load-image-component/src/effects/blur.css";
-export type IDataType = {
-  _id: string;
-  images: any[];
-  en: {
-    title: string;
-    midTitle: string;
-    details: string;
-    storage: string;
-    direction: any[];
-    types: any[];
-  };
-  ar: {
-    title: string;
-    midTitle: string;
-    details: string;
-    storage: string;
-    direction: any[];
-  };
-};
+import { IProduct } from "../../model/IProduct";
+
 export default function useProducts() {
   const [loading, setLoading] = useState<boolean>(false);
-  const [products, setProducts] = useState<IDataType[]>();
-  const columns_en: ColumnsType<IDataType> = [
+  const [products, setProducts] = useState<IProduct[]>();
+  const columns_en: ColumnsType<IProduct> = [
     {
       title: "Id",
       dataIndex: "_id",
@@ -96,7 +79,7 @@ export default function useProducts() {
       ),
     },
   ];
-  const columns_ar: ColumnsType<IDataType> = [
+  const columns_ar: ColumnsType<IProduct> = [
     {
       title: "الرقم المميز",
       dataIndex: "_id",
@@ -166,7 +149,7 @@ export default function useProducts() {
       ),
     },
   ];
-  const handleAllProducts = (products: IDataType[]) => {
+  const handleAllProducts = (products: IProduct[]) => {
     setProducts(products);
   };
   return {

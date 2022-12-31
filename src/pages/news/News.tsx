@@ -1,7 +1,6 @@
 import { Table } from "antd";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import Loading from "../../components/Ui/loading/Loading";
 import { getNews } from "../../services/news";
 import { useNews } from "./NewsVm";
 import "./news.css";
@@ -19,7 +18,7 @@ export default function News() {
 
   useEffect(() => {
     handleLoadingTrue();
-    getNews().then((data) => {
+    getNews().then((data: any) => {
       handleLoadingFalse();
       handleUpdateData(data);
     });
@@ -27,16 +26,20 @@ export default function News() {
 
   return (
     <div>
-      <div className="News">
+      <div className="News p-10">
         <Table
           dataSource={data}
           loading={loading}
+          tableLayout="auto"
+          size="small"
+          pagination={{
+            position: ["bottomCenter"],
+            pageSize: 5,
+          }}
           columns={i18n.language === "en" ? column_en : column_ar}
           scroll={{ x: 400 }}
-          className={`${i18n.language === "ar" ? "font-cairo" : ""}`}
         />
       </div>
-      {/* <div className="">{loading === true && <Loading />}</div> */}
     </div>
   );
 }

@@ -3,32 +3,20 @@ import type { ColumnsType } from "antd/es/table";
 import { Link } from "react-router-dom";
 import { MdModeEditOutline } from "react-icons/md";
 import { RiDeleteBin6Fill } from "react-icons/ri";
-export type INews = {
-  _id: string;
-  img: string;
-  en: {
-    title: string;
-    midTitle: string;
-    details: string;
-    type: string;
-  };
-  ar: {
-    title: string;
-    midTitle: string;
-    details: string;
-    type: string;
-  };
-};
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { INews } from "../../model/INew";
+import { deleteNew } from "../../services/news";
+import "react-lazy-load-image-component/src/effects/blur.css";
 export function useNews() {
   const [loading, setLoading] = useState<boolean>(false);
-  const [data, setData] = useState();
+  const [data, setData] = useState<INews[]>();
   const handleLoadingTrue = () => {
     setLoading(true);
   };
   const handleLoadingFalse = () => {
     setLoading(false);
   };
-  let handleUpdateData = (snapShot: any) => {
+  let handleUpdateData = (snapShot: INews[]) => {
     setData(snapShot);
   };
   const column_en: ColumnsType<INews> = [
@@ -42,17 +30,38 @@ export function useNews() {
       title: "Image",
       dataIndex: "img",
       responsive: ["xs", "sm", "md", "lg"],
-      render: (image) => <img src={image} alt="image" className="w-10 h-10" />,
+      render: (image) => (
+        <LazyLoadImage
+          src={image}
+          alt="image"
+          className="w-36 h-36 object-cover"
+          effect="blur"
+        />
+      ),
     },
     {
       title: "Title",
       dataIndex: "en",
-      render: (en) => <p className="font-medium">{en.title}</p>,
+      render: (en) => (
+        <p className="font-medium max-w-xl  md:text-xl">{en.title}</p>
+      ),
     },
     {
       title: "Type",
       dataIndex: "en",
-      render: (en) => <p className="font-medium capitalize">{en.type}</p>,
+      render: (en) => (
+        <p
+          className={`font-medium capitalize inline-block p-1 rounded-lg bg-orangeColorLight text-white ${
+            en.type === "community"
+              ? "bg-greenColorLight"
+              : en.type === "blog"
+              ? "bg-greyColorLight"
+              : null
+          }`}
+        >
+          {en.type}
+        </p>
+      ),
     },
     {
       title: "Edit",
@@ -69,7 +78,12 @@ export function useNews() {
       dataIndex: "_id",
       responsive: ["xs", "md", "lg"],
       render: (_id) => (
-        <button className="text-red-600 text-xl">
+        <button
+          className="text-red-600 text-xl"
+          onClick={() => {
+            deleteNew(_id);
+          }}
+        >
           <RiDeleteBin6Fill />
         </button>
       ),
@@ -77,26 +91,47 @@ export function useNews() {
   ];
   const column_ar: ColumnsType<INews> = [
     {
-      title: "Id",
+      title: "الرقم المميز",
       dataIndex: "_id",
       responsive: ["lg"],
       render: (_id) => <p className="font-medium">{_id}</p>,
     },
     {
-      title: "Image",
+      title: "الصورة",
       dataIndex: "img",
       responsive: ["xs", "sm", "md", "lg"],
-      render: (image) => <img src={image} alt="image" className="w-10 h-10" />,
+      render: (image) => (
+        <LazyLoadImage
+          src={image}
+          alt="image"
+          className="w-36 h-36 object-cover"
+          effect="blur"
+        />
+      ),
     },
     {
-      title: "Title",
+      title: "العنوان",
       dataIndex: "ar",
-      render: (ar) => <p className="font-medium">{ar.title}</p>,
+      render: (ar) => (
+        <p className="font-medium max-w-xl md:text-xl">{ar.title}</p>
+      ),
     },
     {
-      title: "Type",
+      title: "النوع",
       dataIndex: "ar",
-      render: (ar) => <p className="font-medium capitalize">{ar.type}</p>,
+      render: (ar) => (
+        <p
+          className={`font-medium capitalize inline-block p-1 rounded-lg bg-orangeColorLight text-white ${
+            ar.type === "اجتماعي"
+              ? "bg-greenColorLight"
+              : ar.type === "مدونة"
+              ? "bg-greyColorLight"
+              : null
+          }`}
+        >
+          {ar.type}
+        </p>
+      ),
     },
     {
       title: "تعديل",
@@ -113,7 +148,12 @@ export function useNews() {
       dataIndex: "_id",
       responsive: ["xs", "md", "lg"],
       render: (_id) => (
-        <button className="text-red-600 text-xl">
+        <button
+          className="text-red-600 text-xl"
+          onClick={() => {
+            deleteNew(_id);
+          }}
+        >
           <RiDeleteBin6Fill />
         </button>
       ),

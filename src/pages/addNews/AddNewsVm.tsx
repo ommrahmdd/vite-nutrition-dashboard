@@ -8,13 +8,13 @@ export function useAddNews() {
     en: {
       title: "",
       midTitle: "",
-      type: "",
+      type: "announcements",
       details: "",
     },
     ar: {
       title: "",
       midTitle: "",
-      type: "",
+      type: "إعلان",
       details: "",
     },
   };
@@ -64,10 +64,14 @@ export function useAddNews() {
   };
   // Upload image prop
   const props: UploadProps = {
-    onChange({ file, fileList }) {
+    name: "file",
+    multiple: false,
+    accept: "image/png,image/gif,image/jpeg,image/jpg",
+    beforeUpload: () => false,
+    onChange({ file }) {
       setGlobalForm((prevState: any) => ({
         ...prevState,
-        img: fileList[0],
+        img: file,
       }));
     },
   };

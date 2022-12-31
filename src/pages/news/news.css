@@ -1,3 +1,7 @@
 .ant-table {
   font-family: "Cairo" !important;
 }
+.ant-table-pagination {
+  justify-content: center !important;
+  padding: 2rem 0;
+}
