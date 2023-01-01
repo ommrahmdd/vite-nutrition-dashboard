@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "./i18n";
 import "./App.css";
+import "semantic-ui-css/semantic.min.css";
 import Nav from "./layouts/nav/Nav";
 import Loading from "./components/Ui/loading/Loading";
 import AddNews from "./pages/addNews/AddNews";
