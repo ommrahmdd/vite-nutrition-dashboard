@@ -89,5 +89,18 @@
         ]
       }
     }
+  },
+  "addPartner": {
+    "header": "Add new partner",
+    "instructions": {
+      "title": "Please follow our instructions to add new partner/s",
+      "items": [
+        "You should know that you can add one partner or more in the same time",
+        "After finish upload you partners images you can click Add button to add them"
+      ]
+    },
+    "upload": {
+      "title": "Click or drag file to this area to upload"
+    }
   }
 }

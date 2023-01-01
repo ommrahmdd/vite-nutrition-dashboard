@@ -15,6 +15,8 @@ export default function Instructions({
           <li key={key}>{item}</li>
         ))}
       </ul>
+      {/* Line */}
+      <div className="w-full h-[.08rem] bg-greenColor bg-opacity-60 my-5"></div>
     </div>
   );
 }

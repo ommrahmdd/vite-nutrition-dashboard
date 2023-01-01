@@ -24,7 +24,9 @@ export default function Nav() {
       </nav>
       <div
         className={`mt-5  ${
-          i18n.language === "en" ? "md:pl-28 md:pr-20" : "md:pr-28 md:pl-20"
+          i18n.language === "en"
+            ? "pl-20 md:pl-28 md:pr-20"
+            : "pr-20 md:pr-28 md:pl-20"
         }`}
       >
         <Outlet />

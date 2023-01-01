@@ -55,7 +55,6 @@ export default function AddNews() {
           addNew(globalForm).then((_id) => {
             let imgName = `${(globalForm.img as any).name}${v4()}`;
             let imgRef = ref(storage, `news/${imgName}`);
-            console.log(globalForm);
             uploadBytes(imgRef, globalForm.img as any, {
               contentType: "image/png",
             })
@@ -63,7 +62,6 @@ export default function AddNews() {
                 return getDownloadURL(res.ref);
               })
               .then((url) => {
-                console.log(url);
                 return addNewImg(_id, url);
               })
               .then(() => {

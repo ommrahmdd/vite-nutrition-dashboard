@@ -26,7 +26,7 @@ export default function News() {
 
   return (
     <div>
-      <div className="News p-10">
+      <div className="News p-5">
         <Table
           dataSource={data}
           loading={loading}

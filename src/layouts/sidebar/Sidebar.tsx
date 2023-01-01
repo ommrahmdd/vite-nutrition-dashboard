@@ -37,7 +37,7 @@ export default function Sidebar() {
         inlineCollapsed={collapse}
         mode="inline"
         defaultSelectedKeys={["1"]}
-        className={`h-full py-10    text-xl ${
+        className={`h-full py-10 text-xl ${
           i18n.language === "ar" ? "sidebar-ar" : "sidebar-en"
         } ${collapse === false && "lg:min-w-[20vw]"}`}
       />
