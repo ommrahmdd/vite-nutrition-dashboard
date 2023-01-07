@@ -63,12 +63,12 @@ export default function AddPartner() {
             </div>
           </Dragger>
         </div>
-        <div className="flex justify-end">
+        <div className="w-full flex justify-center">
           <button
             type="submit"
             className="bg-greenColor py-2 px-3 rounded-lg text-white "
           >
-            Add
+            Add / أضـف
           </button>
         </div>
       </form>
