@@ -1,14 +1,12 @@
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { v4 } from "uuid";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import Instructions from "../../components/instructions/Instructions";
 import StepsControllers from "../../components/stepsControllers/StepsControllers";
 import { MainBtn } from "../../components/Ui/buttons/Buttons";
 import Loading from "../../components/Ui/loading/Loading";
 import Header from "../../layouts/header/Header";
-import { storage } from "../../services/config";
+import { uploadImage } from "../../cloudinary";
 import { addProduct, addProductImgs } from "../../services/products";
 import { useAddProductVm } from "./AddProductVm";
 
@@ -57,12 +55,7 @@ export default function AddProduct() {
             handleLoadingTrue();
             addProduct(initailValue).then((_id) => {
               initailValue.imgs.forEach((img) => {
-                let imgName = `${(img as any).name}${v4()}`;
-                let imgRef = ref(storage, `products/${_id}/${imgName}`);
-                uploadBytes(imgRef, img)
-                  .then((res) => {
-                    return getDownloadURL(res.ref);
-                  })
+                uploadImage(img as any)
                   .then((url) => {
                     return addProductImgs(_id, url);
                   })

@@ -8,14 +8,7 @@ import { useAddNews } from "./AddNewsVm";
 import "./addNews.css";
 import StepsControllers from "../../components/stepsControllers/StepsControllers";
 import { addNew, addNewImg } from "../../services/news";
-import { v4 } from "uuid";
-import {
-  getDownloadURL,
-  ref,
-  uploadBytes,
-  uploadString,
-} from "firebase/storage";
-import { storage } from "../../services/config";
+import { uploadImage } from "../../cloudinary";
 import Loading from "../../components/Ui/loading/Loading";
 export default function AddNews() {
   const { t } = useTranslation();
@@ -53,14 +46,7 @@ export default function AddNews() {
           handleLoadingTrue();
           e.preventDefault();
           addNew(globalForm).then((_id) => {
-            let imgName = `${(globalForm.img as any).name}${v4()}`;
-            let imgRef = ref(storage, `news/${imgName}`);
-            uploadBytes(imgRef, globalForm.img as any, {
-              contentType: "image/png",
-            })
-              .then((res) => {
-                return getDownloadURL(res.ref);
-              })
+            uploadImage(globalForm.img as any)
               .then((url) => {
                 return addNewImg(_id, url);
               })
