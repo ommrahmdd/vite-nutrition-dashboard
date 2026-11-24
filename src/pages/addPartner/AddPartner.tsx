@@ -1,14 +1,12 @@
 import { Upload } from "antd";
 // import Dragger from "antd/es/upload/Dragger";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { FiUploadCloud } from "react-icons/fi";
-import { v4 } from "uuid";
 import Instructions from "../../components/instructions/Instructions";
 import Loading from "../../components/Ui/loading/Loading";
 import Header from "../../layouts/header/Header";
-import { storage } from "../../services/config";
+import { uploadImage } from "../../cloudinary";
 import { addPartner, updatePartner } from "../../services/partners";
 import { useAddPartner } from "./AddPartnerVm";
 
@@ -36,12 +34,7 @@ export default function AddPartner() {
           handleLoadingTrue();
           // Get Doc id from firebase
           addPartner().then((partnerId) => {
-            let imgName = `${imgs.img.name}${v4()}`;
-            let imgRef = ref(storage, `partners/${imgName}`);
-            uploadBytes(imgRef, imgs.img)
-              .then((res) => {
-                return getDownloadURL(res.ref);
-              })
+            uploadImage(imgs.img as any)
               .then((url) => {
                 return updatePartner(partnerId, url);
               })
